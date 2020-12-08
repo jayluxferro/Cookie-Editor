@@ -1,0 +1,514 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		699454FC258037360028CCDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699454FB258037360028CCDF /* AppDelegate.swift */; };
+		699454FF258037360028CCDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 699454FD258037360028CCDF /* Main.storyboard */; };
+		69945501258037360028CCDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69945500258037360028CCDF /* ViewController.swift */; };
+		69945503258037390028CCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69945502258037390028CCDF /* Assets.xcassets */; };
+		6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 699455092580373A0028CCDF /* Cookie-Editor Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6994550F2580373A0028CCDF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6994550E2580373A0028CCDF /* Cocoa.framework */; };
+		699455122580373A0028CCDF /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */; };
+		699455232580373B0028CCDF /* interface in Resources */ = {isa = PBXBuildFile; fileRef = 6994551F2580373B0028CCDF /* interface */; };
+		699455242580373B0028CCDF /* cookie-editor.js in Resources */ = {isa = PBXBuildFile; fileRef = 699455202580373B0028CCDF /* cookie-editor.js */; };
+		699455262580373B0028CCDF /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 699455222580373B0028CCDF /* manifest.json */; };
+		699C67A525803DCD0071DD30 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 699C67A425803DCD0071DD30 /* icon.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6994550B2580373A0028CCDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 699454EF258037360028CCDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 699455082580373A0028CCDF;
+			remoteInfo = "Cookie-Editor Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6994551A2580373A0028CCDF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		699454F7258037360028CCDF /* Cookie-Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cookie-Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		699454FA258037360028CCDF /* Cookie_Editor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookie_Editor.entitlements; sourceTree = "<group>"; };
+		699454FB258037360028CCDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		699454FE258037360028CCDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		69945500258037360028CCDF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		69945502258037390028CCDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		69945504258037390028CCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		699455092580373A0028CCDF /* Cookie-Editor Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Cookie-Editor Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6994550E2580373A0028CCDF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		699455132580373A0028CCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		699455142580373A0028CCDF /* Cookie_Editor_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookie_Editor_Extension.entitlements; sourceTree = "<group>"; };
+		6994551F2580373B0028CCDF /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = "../../../opensource/cookie-editor/build/firefox/interface"; sourceTree = "<group>"; };
+		699455202580373B0028CCDF /* cookie-editor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "cookie-editor.js"; path = "../../../opensource/cookie-editor/build/firefox/cookie-editor.js"; sourceTree = "<group>"; };
+		699455222580373B0028CCDF /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "../../../opensource/cookie-editor/build/firefox/manifest.json"; sourceTree = "<group>"; };
+		699C67A425803DCD0071DD30 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		699454F4258037360028CCDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		699455062580373A0028CCDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6994550F2580373A0028CCDF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		699454EE258037360028CCDF = {
+			isa = PBXGroup;
+			children = (
+				699454F9258037360028CCDF /* Cookie-Editor */,
+				699455102580373A0028CCDF /* Cookie-Editor Extension */,
+				6994550D2580373A0028CCDF /* Frameworks */,
+				699454F8258037360028CCDF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		699454F8258037360028CCDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				699454F7258037360028CCDF /* Cookie-Editor.app */,
+				699455092580373A0028CCDF /* Cookie-Editor Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		699454F9258037360028CCDF /* Cookie-Editor */ = {
+			isa = PBXGroup;
+			children = (
+				699454FA258037360028CCDF /* Cookie_Editor.entitlements */,
+				699454FB258037360028CCDF /* AppDelegate.swift */,
+				699454FD258037360028CCDF /* Main.storyboard */,
+				69945500258037360028CCDF /* ViewController.swift */,
+				69945502258037390028CCDF /* Assets.xcassets */,
+				69945504258037390028CCDF /* Info.plist */,
+			);
+			path = "Cookie-Editor";
+			sourceTree = "<group>";
+		};
+		6994550D2580373A0028CCDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6994550E2580373A0028CCDF /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		699455102580373A0028CCDF /* Cookie-Editor Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6994551E2580373B0028CCDF /* Resources */,
+				699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */,
+				699455132580373A0028CCDF /* Info.plist */,
+				699455142580373A0028CCDF /* Cookie_Editor_Extension.entitlements */,
+			);
+			path = "Cookie-Editor Extension";
+			sourceTree = "<group>";
+		};
+		6994551E2580373B0028CCDF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6994551F2580373B0028CCDF /* interface */,
+				699455202580373B0028CCDF /* cookie-editor.js */,
+				699C67A425803DCD0071DD30 /* icon.png */,
+				699455222580373B0028CCDF /* manifest.json */,
+			);
+			name = Resources;
+			path = "Cookie-Editor Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		699454F6258037360028CCDF /* Cookie-Editor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6994551B2580373A0028CCDF /* Build configuration list for PBXNativeTarget "Cookie-Editor" */;
+			buildPhases = (
+				699454F3258037360028CCDF /* Sources */,
+				699454F4258037360028CCDF /* Frameworks */,
+				699454F5258037360028CCDF /* Resources */,
+				6994551A2580373A0028CCDF /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6994550C2580373A0028CCDF /* PBXTargetDependency */,
+			);
+			name = "Cookie-Editor";
+			productName = "Cookie-Editor";
+			productReference = 699454F7258037360028CCDF /* Cookie-Editor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		699455082580373A0028CCDF /* Cookie-Editor Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 699455172580373A0028CCDF /* Build configuration list for PBXNativeTarget "Cookie-Editor Extension" */;
+			buildPhases = (
+				699455052580373A0028CCDF /* Sources */,
+				699455062580373A0028CCDF /* Frameworks */,
+				699455072580373A0028CCDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cookie-Editor Extension";
+			productName = "Cookie-Editor Extension";
+			productReference = 699455092580373A0028CCDF /* Cookie-Editor Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		699454EF258037360028CCDF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					699454F6258037360028CCDF = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					699455082580373A0028CCDF = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = 699454F2258037360028CCDF /* Build configuration list for PBXProject "Cookie-Editor" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 699454EE258037360028CCDF;
+			productRefGroup = 699454F8258037360028CCDF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				699454F6258037360028CCDF /* Cookie-Editor */,
+				699455082580373A0028CCDF /* Cookie-Editor Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		699454F5258037360028CCDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69945503258037390028CCDF /* Assets.xcassets in Resources */,
+				699454FF258037360028CCDF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		699455072580373A0028CCDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				699455262580373B0028CCDF /* manifest.json in Resources */,
+				699C67A525803DCD0071DD30 /* icon.png in Resources */,
+				699455232580373B0028CCDF /* interface in Resources */,
+				699455242580373B0028CCDF /* cookie-editor.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		699454F3258037360028CCDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69945501258037360028CCDF /* ViewController.swift in Sources */,
+				699454FC258037360028CCDF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		699455052580373A0028CCDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				699455122580373A0028CCDF /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6994550C2580373A0028CCDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 699455082580373A0028CCDF /* Cookie-Editor Extension */;
+			targetProxy = 6994550B2580373A0028CCDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		699454FD258037360028CCDF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				699454FE258037360028CCDF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		699455152580373A0028CCDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		699455162580373A0028CCDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		699455182580373A0028CCDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor Extension/Cookie_Editor_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Cookie-Editor Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		699455192580373A0028CCDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor Extension/Cookie_Editor_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Cookie-Editor Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6994551C2580373A0028CCDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor/Cookie_Editor.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Cookie-Editor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		6994551D2580373A0028CCDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor/Cookie_Editor.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Cookie-Editor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		699454F2258037360028CCDF /* Build configuration list for PBXProject "Cookie-Editor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				699455152580373A0028CCDF /* Debug */,
+				699455162580373A0028CCDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		699455172580373A0028CCDF /* Build configuration list for PBXNativeTarget "Cookie-Editor Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				699455182580373A0028CCDF /* Debug */,
+				699455192580373A0028CCDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6994551B2580373A0028CCDF /* Build configuration list for PBXNativeTarget "Cookie-Editor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6994551C2580373A0028CCDF /* Debug */,
+				6994551D2580373A0028CCDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 699454EF258037360028CCDF /* Project object */;
+}
