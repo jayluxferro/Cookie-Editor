@@ -9,6 +9,7 @@
 4. Build and run the project to install the extension.
 
 <hr/>
+<img src="sample/1.jpg" style="width: 150px;"/>
 
 ### Acknowledgement
 <a href="https://github.com/Moustachauve/cookie-editor" target="_blank">https://github.com/Moustachauve/cookie-editor</a>
