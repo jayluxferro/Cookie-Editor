@@ -57,9 +57,9 @@
 		699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		699455132580373A0028CCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		699455142580373A0028CCDF /* Cookie_Editor_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookie_Editor_Extension.entitlements; sourceTree = "<group>"; };
-		6994551F2580373B0028CCDF /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = "../../../opensource/cookie-editor/build/firefox/interface"; sourceTree = "<group>"; };
-		699455202580373B0028CCDF /* cookie-editor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "cookie-editor.js"; path = "../../../opensource/cookie-editor/build/firefox/cookie-editor.js"; sourceTree = "<group>"; };
-		699455222580373B0028CCDF /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "../../../opensource/cookie-editor/build/firefox/manifest.json"; sourceTree = "<group>"; };
+		6994551F2580373B0028CCDF /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = "Cookie-Editor Extension/Resources/interface"; sourceTree = SOURCE_ROOT; };
+		699455202580373B0028CCDF /* cookie-editor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "cookie-editor.js"; path = "Cookie-Editor Extension/Resources/cookie-editor.js"; sourceTree = SOURCE_ROOT; };
+		699455222580373B0028CCDF /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "Cookie-Editor Extension/Resources/manifest.json"; sourceTree = SOURCE_ROOT; };
 		699C67A425803DCD0071DD30 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
