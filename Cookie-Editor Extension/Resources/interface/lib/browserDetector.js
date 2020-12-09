@@ -1,6 +1,6 @@
 function BrowserDetector() {
     'use strict';
-    let namespace = window.browser;
+    let namespace = browser;
     let browserName;
     let doesSupportSameSiteCookie = null;
 
@@ -30,12 +30,15 @@ function BrowserDetector() {
         };
 
         try {
-            this.getApi().cookies.set(newCookie).then(cookie => {
-               doesSupportSameSiteCookie = true;
-           }, error => {
-               
-               doesSupportSameSiteCookie = false;
-           });
+            this.getApi().cookies.set(newCookie, (cookieResponse) => {
+                let error = this.getApi().runtime.lastError;
+                if (!cookieResponse || error) {
+                    
+                    doesSupportSameSiteCookie = false;
+                    return;
+                }
+                doesSupportSameSiteCookie = true;
+            });
           
         } catch(e) {
             doesSupportSameSiteCookie = false;

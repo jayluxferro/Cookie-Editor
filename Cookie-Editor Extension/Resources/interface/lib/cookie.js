@@ -97,7 +97,7 @@ class Cookie {
         labelValue.setAttribute('for', 'value-' + this.guid);
         var inputValue = form.querySelector('.input-value');
         inputValue.id = 'value-' + this.guid;
-        inputValue.value = this.cookie.value;
+        inputValue.value = decodeURIComponent(this.cookie.value);
 
         var labelDomain = form.querySelector('.label-domain');
         labelDomain.setAttribute('for', 'domain-' + this.guid);

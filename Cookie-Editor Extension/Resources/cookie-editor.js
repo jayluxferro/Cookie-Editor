@@ -7,7 +7,7 @@
 	browserDetector.getApi().runtime.onConnect.addListener(onConnect);
 	browserDetector.getApi().runtime.onMessage.addListener(handleMessage);
 	browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
-    
+    // browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged); # not support by Safari
 
     function handleMessage(request, sender, sendResponse) {
         
@@ -29,16 +29,19 @@
                     url: request.params.url
                 };
              
-                browserDetector.getApi().cookies.getAll(getAllCookiesParams).then(sendResponse);
+                browserDetector.getApi().cookies.getAll(getAllCookiesParams, sendResponse);
                 
                 return true;
 
             case 'saveCookie':
-                browserDetector.getApi().cookies.set(request.params.cookie).then(cookie => {
-                   sendResponse(null, cookie);
-                }, error => {
-                   
-                   sendResponse(error.message, null);
+                browserDetector.getApi().cookies.set(request.params.cookie, cookie => {
+                    if (cookie) {
+                        sendResponse(null, cookie);
+                    } else {
+                        let error = browserDetector.getApi().runtime.lastError;
+                        
+                        sendResponse(error.message, cookie);
+                    }
                 });
                 return true;
 
@@ -47,7 +50,7 @@
                     name: request.params.name,
                     url: request.params.url
                 };
-                browserDetector.getApi().cookies.remove(removeParams).then(sendResponse);
+                browserDetector.getApi().cookies.remove(removeParams, sendResponse);
                 return true;
         }
     }

@@ -38,16 +38,21 @@ function GenericCookieHandler() {
         }
         
        
-        browserDetector.getApi().cookies.set(newCookie).then(cookie => {
-           if (callback) {
-               callback(null, cookie);
-           }
-       }, error => {
-           
-           if (callback) {
-               callback(error.message, null);
-           }
-       });
+        browserDetector.getApi().cookies.set(newCookie, (cookieResponse) => {
+            let error = browserDetector.getApi().runtime.lastError;
+            if (!cookieResponse || error) {
+                
+                if (callback) {
+                    let errorMessage = (error ? error.message : '') || 'Unknown error';
+                    return callback(errorMessage, cookieResponse);
+                }
+                return;
+            }
+
+            if (callback) {
+                return callback(null, cookieResponse);
+            }
+        });
     };
 
     this.removeCookie = function(name, url, callback) {
@@ -55,10 +60,19 @@ function GenericCookieHandler() {
             name: name,
             url: url,
             storeId: this.currentTab.cookieStoreId
-        }).then(callback, function (e) {
-            
+        }, (cookieResponse) => {
+            let error = browserDetector.getApi().runtime.lastError;
+            if (!cookieResponse || error) {
+                
+                if (callback) {
+                    let errorMessage = (error ? error.message : '') || 'Unknown error';
+                    return callback(errorMessage, cookieResponse);
+                }
+                return;
+            }
+
             if (callback) {
-                callback();
+                return callback(null, cookieResponse);
             }
         });
     }

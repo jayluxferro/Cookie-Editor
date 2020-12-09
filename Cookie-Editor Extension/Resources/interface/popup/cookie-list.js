@@ -145,9 +145,9 @@
                             sendNotification(error);
                             return;
                         }
-                        if (browserDetector.isEdge()) {
-                            onCookiesChanged();
-                        }
+                        
+                        onCookiesChanged();
+                        
                         if (cookieContainer) {
                             cookieContainer.showSuccessAnimation();
                         }
@@ -160,10 +160,8 @@
                         sendNotification(error);
                         return;
                     }
-                    if (browserDetector.isEdge()) {
-                        onCookiesChanged();
-                    }
-
+                    onCookiesChanged();
+                    
                     if (cookieContainer) {
                         cookieContainer.showSuccessAnimation();
                     }
@@ -380,7 +378,7 @@
         }
         if (showAllAdvanced === undefined) {
             
-            browserDetector.getApi().storage.local.get('showAllAdvanced').then(function (onGot) {
+            browserDetector.getApi().storage.local.get('showAllAdvanced', function (onGot) {
                 showAllAdvanced = onGot.showAllAdvanced || false;
                 document.querySelector('#advanced-toggle-all input').checked = showAllAdvanced;
                 return showCookiesForTab();
@@ -468,15 +466,12 @@
 
     function removeCookie(name, url, callback) {
         cookieHandler.removeCookie(name, url || getCurrentTabUrl(), function (e) {
-            
             if (callback) {
                 callback();
             }
         });
-
-        if (browserDetector.isEdge()) {
-            onCookiesChanged();
-        }
+        
+        onCookiesChanged();
     }
 
     function onCookiesChanged(changeInfo) {
