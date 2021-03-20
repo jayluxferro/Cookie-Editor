@@ -17,6 +17,7 @@ function GenericCookieHandler() {
     };
 
     this.saveCookie = function(cookie, url, callback) {
+        
         const newCookie = {
             domain: cookie.domain || '',
             name: cookie.name || '',
@@ -39,14 +40,19 @@ function GenericCookieHandler() {
             newCookie.sameSite = cookie.sameSite || undefined;
         }
         
-        delete newCookie.domain; // not needed in Safari
-        
+   
+        try{
+            if (!newCookie.domain.length) {
+                delete newCookie.domain
+            }
+        }catch(e){
+            // ignore
+        }
         browserDetector.getApi().cookies.set(newCookie).then(cookie => {
             if (callback) {
                 callback(null, cookie);
             }
         }, error => {
-            
             if (callback) {
                 callback(error.message, null);
             }

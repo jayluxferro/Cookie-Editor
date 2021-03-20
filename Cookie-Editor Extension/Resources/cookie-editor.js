@@ -8,6 +8,7 @@
 	browserDetector.getApi().runtime.onMessage.addListener(handleMessage);
 	browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
 	browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
+    const popupOptions = {};
     popupOptions.popup = '/interface/popup/cookie-list.html';
     browserDetector.getApi().browserAction.setPopup(popupOptions);
     
@@ -16,13 +17,13 @@
         
         switch (request.type) {
             case 'getTabs':
-                browserDetector.getApi().tabs.query({}, function (tabs) {
+                browserDetector.getApi().tabs.query({}).then(tabs => {
                     sendResponse(tabs);
                 });
                 return true;
 
             case 'getCurrentTab':
-                browserDetector.getApi().tabs.query({ active: true, currentWindow: true }, function (tabInfo) {
+                browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(tabInfo => {
                     sendResponse(tabInfo);
                 });
                 return true;

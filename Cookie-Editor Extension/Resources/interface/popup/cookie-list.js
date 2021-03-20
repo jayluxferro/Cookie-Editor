@@ -83,7 +83,6 @@
         }
 
         function saveCookie(id, name, value, domain, path, expiration, sameSite, hostOnly, session, secure, httpOnly) {
-            
             let cookieContainer = loadedCookies[id];
             let cookie = cookieContainer ? cookieContainer.cookie : null;
             let oldName;
