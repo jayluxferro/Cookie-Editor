@@ -14,10 +14,10 @@
 		6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 699455092580373A0028CCDF /* Cookie-Editor Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6994550F2580373A0028CCDF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6994550E2580373A0028CCDF /* Cocoa.framework */; };
 		699455122580373A0028CCDF /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */; };
-		699455232580373B0028CCDF /* interface in Resources */ = {isa = PBXBuildFile; fileRef = 6994551F2580373B0028CCDF /* interface */; };
-		699455242580373B0028CCDF /* cookie-editor.js in Resources */ = {isa = PBXBuildFile; fileRef = 699455202580373B0028CCDF /* cookie-editor.js */; };
-		699455262580373B0028CCDF /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 699455222580373B0028CCDF /* manifest.json */; };
-		699C67A525803DCD0071DD30 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 699C67A425803DCD0071DD30 /* icon.png */; };
+		69A616792604A24B00444250 /* cookie-editor.js in Resources */ = {isa = PBXBuildFile; fileRef = 69A616752604A24A00444250 /* cookie-editor.js */; };
+		69A6167A2604A24B00444250 /* interface in Resources */ = {isa = PBXBuildFile; fileRef = 69A616762604A24A00444250 /* interface */; };
+		69A6167B2604A24B00444250 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 69A616772604A24B00444250 /* manifest.json */; };
+		69A616822604A50300444250 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A616812604A50300444250 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +57,10 @@
 		699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		699455132580373A0028CCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		699455142580373A0028CCDF /* Cookie_Editor_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookie_Editor_Extension.entitlements; sourceTree = "<group>"; };
-		6994551F2580373B0028CCDF /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = "Cookie-Editor Extension/Resources/interface"; sourceTree = SOURCE_ROOT; };
-		699455202580373B0028CCDF /* cookie-editor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "cookie-editor.js"; path = "Cookie-Editor Extension/Resources/cookie-editor.js"; sourceTree = SOURCE_ROOT; };
-		699455222580373B0028CCDF /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "Cookie-Editor Extension/Resources/manifest.json"; sourceTree = SOURCE_ROOT; };
-		699C67A425803DCD0071DD30 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		69A616752604A24A00444250 /* cookie-editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "cookie-editor.js"; path = "Resources/cookie-editor.js"; sourceTree = "<group>"; };
+		69A616762604A24A00444250 /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = Resources/interface; sourceTree = "<group>"; };
+		69A616772604A24B00444250 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		69A616812604A50300444250 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +127,7 @@
 			children = (
 				6994551E2580373B0028CCDF /* Resources */,
 				699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */,
+				69A616812604A50300444250 /* icon.png */,
 				699455132580373A0028CCDF /* Info.plist */,
 				699455142580373A0028CCDF /* Cookie_Editor_Extension.entitlements */,
 			);
@@ -136,10 +137,9 @@
 		6994551E2580373B0028CCDF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6994551F2580373B0028CCDF /* interface */,
-				699455202580373B0028CCDF /* cookie-editor.js */,
-				699C67A425803DCD0071DD30 /* icon.png */,
-				699455222580373B0028CCDF /* manifest.json */,
+				69A616752604A24A00444250 /* cookie-editor.js */,
+				69A616762604A24A00444250 /* interface */,
+				69A616772604A24B00444250 /* manifest.json */,
 			);
 			name = Resources;
 			path = "Cookie-Editor Extension";
@@ -191,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					699454F6258037360028CCDF = {
 						CreatedOnToolsVersion = 12.3;
@@ -234,10 +234,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				699455262580373B0028CCDF /* manifest.json in Resources */,
-				699C67A525803DCD0071DD30 /* icon.png in Resources */,
-				699455232580373B0028CCDF /* interface in Resources */,
-				699455242580373B0028CCDF /* cookie-editor.js in Resources */,
+				69A6167A2604A24B00444250 /* interface in Resources */,
+				69A616822604A50300444250 /* icon.png in Resources */,
+				69A6167B2604A24B00444250 /* manifest.json in Resources */,
+				69A616792604A24B00444250 /* cookie-editor.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor Extension/Cookie_Editor_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Cookie-Editor Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -421,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor Extension/Cookie_Editor_Extension.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Cookie-Editor Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -443,6 +445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor/Cookie_Editor.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Cookie-Editor/Info.plist";
@@ -464,6 +467,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor/Cookie_Editor.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Cookie-Editor/Info.plist";

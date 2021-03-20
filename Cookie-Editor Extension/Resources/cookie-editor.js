@@ -3,11 +3,14 @@
 
     const connections = {};
     const browserDetector = new BrowserDetector();
-
+    
 	browserDetector.getApi().runtime.onConnect.addListener(onConnect);
 	browserDetector.getApi().runtime.onMessage.addListener(handleMessage);
 	browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
-    // browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged); # not support by Safari
+	browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
+    popupOptions.popup = '/interface/popup/cookie-list.html';
+    browserDetector.getApi().browserAction.setPopup(popupOptions);
+    
 
     function handleMessage(request, sender, sendResponse) {
         
@@ -28,20 +31,16 @@
                 const getAllCookiesParams = {
                     url: request.params.url
                 };
-             
-                browserDetector.getApi().cookies.getAll(getAllCookiesParams, sendResponse);
                 
+                browserDetector.getApi().cookies.getAll(getAllCookiesParams).then(sendResponse);
                 return true;
 
             case 'saveCookie':
-                browserDetector.getApi().cookies.set(request.params.cookie, cookie => {
-                    if (cookie) {
-                        sendResponse(null, cookie);
-                    } else {
-                        let error = browserDetector.getApi().runtime.lastError;
-                        
-                        sendResponse(error.message, cookie);
-                    }
+                browserDetector.getApi().cookies.set(request.params.cookie).then(cookie => {
+                    sendResponse(null, cookie);
+                }, error => {
+                    
+                    sendResponse(error.message, null);
                 });
                 return true;
 
@@ -50,7 +49,7 @@
                     name: request.params.name,
                     url: request.params.url
                 };
-                browserDetector.getApi().cookies.remove(removeParams, sendResponse);
+                browserDetector.getApi().cookies.remove(removeParams).then(sendResponse);
                 return true;
         }
     }
@@ -112,6 +111,5 @@
     function onTabsChanged(tabId, changeInfo, tab) {
         sendMessageToTab(tabId, 'tabsChanged', changeInfo);
     }
-
 
 }());

@@ -91,25 +91,25 @@ class Cookie {
         labelName.setAttribute('for', 'name-' + this.guid);
         var inputName = form.querySelector('.input-name');
         inputName.id = 'name-' + this.guid;
-        inputName.value = this.cookie.name;
+        inputName.value = decodeURI(this.cookie.name);
 
         var labelValue = form.querySelector('.label-value');
         labelValue.setAttribute('for', 'value-' + this.guid);
         var inputValue = form.querySelector('.input-value');
         inputValue.id = 'value-' + this.guid;
-        inputValue.value = decodeURIComponent(this.cookie.value);
+        inputValue.value = decodeURI(this.cookie.value);
 
         var labelDomain = form.querySelector('.label-domain');
         labelDomain.setAttribute('for', 'domain-' + this.guid);
         var inputDomain = form.querySelector('.input-domain');
         inputDomain.id = 'domain-' + this.guid;
-        inputDomain.value = this.cookie.domain;
+        inputDomain.value = decodeURI(this.cookie.domain);
 
         var labelPath = form.querySelector('.label-path');
         labelPath.setAttribute('for', 'path-' + this.guid);
         var inputPath = form.querySelector('.input-path');
         inputPath.id = 'path-' + this.guid;
-        inputPath.value = this.cookie.path;
+        inputPath.value = decodeURI(this.cookie.path);
 
         var labelExpiration = form.querySelector('.label-expiration');
         labelExpiration.setAttribute('for', 'expiration-' + this.guid);
@@ -180,7 +180,7 @@ class Cookie {
         var nameInput = this.baseHtml.querySelector('#name-' + this.guid);
         var header = this.baseHtml.querySelector('.header');
         this.baseHtml.setAttribute('data-name', this.cookie.name);
-        nameInput.value = this.cookie.name;
+        nameInput.value = decodeURI(this.cookie.name);
         
         this.animateChangeOnNode(header);
         this.animateChangeOnNode(nameInput);
@@ -189,7 +189,7 @@ class Cookie {
     updateValue() {
         var valueInput = this.baseHtml.querySelector('#value-' + this.guid);
         var header = this.baseHtml.querySelector('.header');
-        valueInput.value = this.cookie.value;
+        valueInput.value = decodeURI(this.cookie.value);
 
         this.animateChangeOnNode(header);
         this.animateChangeOnNode(valueInput);
@@ -198,7 +198,7 @@ class Cookie {
     updateDomain() {
         var valueInput = this.baseHtml.querySelector('#domain-' + this.guid);
         var header = this.baseHtml.querySelector('.header');
-        valueInput.value = this.cookie.domain;
+        valueInput.value = decodeURI(this.cookie.domain);
 
         this.animateChangeOnNode(header);
         this.animateChangeOnNode(valueInput);
@@ -207,7 +207,7 @@ class Cookie {
     updatePath() {
         var valueInput = this.baseHtml.querySelector('#path-' + this.guid);
         var header = this.baseHtml.querySelector('.header');
-        valueInput.value = this.cookie.path;
+        valueInput.value = decodeURI(this.cookie.path);
 
         this.animateChangeOnNode(header);
         this.animateChangeOnNode(valueInput);

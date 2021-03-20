@@ -9,12 +9,12 @@ function GenericCookieHandler() {
 
     this.getAllCookies = function(callback) {
         browserDetector.getApi().cookies.getAll({
-           url: this.currentTab.url,
-           storeId: this.currentTab.cookieStoreId
-       }).then(callback, function (e) {
-           
-       });
-    }
+            url: this.currentTab.url,
+            storeId: this.currentTab.cookieStoreId
+        }).then(callback, function (e) {
+            
+        });
+    };
 
     this.saveCookie = function(cookie, url, callback) {
         const newCookie = {
@@ -25,10 +25,12 @@ function GenericCookieHandler() {
             secure: cookie.secure || null,
             httpOnly: cookie.httpOnly || null,
             expirationDate: cookie.expirationDate || null,
-            storeId: cookie.storeId || this.currentTab.cookieStoreId || null,
+            storeId: cookie.storeId || this.currentTab.cookiesStoreId || null,
             url: url
         };
 
+        
+        
         if (cookie.hostOnly) {
             newCookie.domain = null;
         }
@@ -37,43 +39,30 @@ function GenericCookieHandler() {
             newCookie.sameSite = cookie.sameSite || undefined;
         }
         
-       
-        browserDetector.getApi().cookies.set(newCookie, (cookieResponse) => {
-            let error = browserDetector.getApi().runtime.lastError;
-            if (!cookieResponse || error) {
-                
-                if (callback) {
-                    let errorMessage = (error ? error.message : '') || 'Unknown error';
-                    return callback(errorMessage, cookieResponse);
-                }
-                return;
-            }
-
+        delete newCookie.domain; // not needed in Safari
+        
+        browserDetector.getApi().cookies.set(newCookie).then(cookie => {
             if (callback) {
-                return callback(null, cookieResponse);
+                callback(null, cookie);
+            }
+        }, error => {
+            
+            if (callback) {
+                callback(error.message, null);
             }
         });
+        
     };
 
     this.removeCookie = function(name, url, callback) {
         browserDetector.getApi().cookies.remove({
             name: name,
-            url: url,
-            storeId: this.currentTab.cookieStoreId
-        }, (cookieResponse) => {
-            let error = browserDetector.getApi().runtime.lastError;
-            if (!cookieResponse || error) {
-                
-                if (callback) {
-                    let errorMessage = (error ? error.message : '') || 'Unknown error';
-                    return callback(errorMessage, cookieResponse);
-                }
-                return;
-            }
-
+            url: url
+        }).then(callback, function (e) {
+            
             if (callback) {
-                return callback(null, cookieResponse);
+                callback();
             }
         });
-    }
+    };
 }

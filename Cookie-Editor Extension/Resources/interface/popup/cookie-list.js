@@ -35,18 +35,6 @@
             return false;
         }
 
-        function filterCookies(filterText) {
-            Array.from(document.getElementById('cookie-container').children[0].children)
-            .map(cookieElement => {
-                const cookieName = cookieElement.children[0].getElementsByTagName('span')[0].textContent.toLocaleLowerCase();
-                if (cookieName.match(filterText.toLowerCase())) {
-                     cookieElement.classList.remove('hide');
-                 } else {
-                     cookieElement.classList.add('hide');
-                 }
-             });
-         }
-        
         function saveCookieForm(form) {
             let isCreateForm = form.classList.contains('create');
 
@@ -96,7 +84,6 @@
 
         function saveCookie(id, name, value, domain, path, expiration, sameSite, hostOnly, session, secure, httpOnly) {
             
-
             let cookieContainer = loadedCookies[id];
             let cookie = cookieContainer ? cookieContainer.cookie : null;
             let oldName;
@@ -154,14 +141,16 @@
                     });
                 });
             } else {
+                
                 // Should probably put in a function to prevent duplication
                 cookieHandler.saveCookie(cookie, getCurrentTabUrl(), function(error, cookie) {
                     if (error) {
                         sendNotification(error);
                         return;
                     }
-                    onCookiesChanged();
                     
+                    onCookiesChanged();
+
                     if (cookieContainer) {
                         cookieContainer.showSuccessAnimation();
                     }
@@ -190,8 +179,6 @@
                 }
             });
         }
-        
-        document.getElementById('searchField').addEventListener('keyup', e => filterCookies(e.target.value));
 
         document.getElementById('create-cookie').addEventListener('click', () => {
             if (disableButtons) {
@@ -365,6 +352,7 @@
         showCookiesForTab();
         adjustWidthIfSmaller();
 
+        // containerCookie.style.height = '300px';
     });
 
     // == End document ready == //
@@ -377,13 +365,11 @@
             return;
         }
         if (showAllAdvanced === undefined) {
-            
-            browserDetector.getApi().storage.local.get('showAllAdvanced', function (onGot) {
+            browserDetector.getApi().storage.local.get('showAllAdvanced').then(function (onGot) {
                 showAllAdvanced = onGot.showAllAdvanced || false;
                 document.querySelector('#advanced-toggle-all input').checked = showAllAdvanced;
                 return showCookiesForTab();
             });
-            
             return;
         }
 
@@ -406,6 +392,7 @@
 
             if (cookies.length > 0) {
                 cookiesListHtml = document.createElement('ul');
+                cookiesListHtml.appendChild(generateSearchBar());
                 cookies.forEach(function (cookie) {
                     var id = Cookie.hashCode(cookie);
                     loadedCookies[id] = new Cookie(id, cookie, showAllAdvanced);
@@ -466,11 +453,12 @@
 
     function removeCookie(name, url, callback) {
         cookieHandler.removeCookie(name, url || getCurrentTabUrl(), function (e) {
+            
             if (callback) {
                 callback();
             }
         });
-        
+
         onCookiesChanged();
     }
 
@@ -510,6 +498,7 @@
         if (!cookiesListHtml && document.getElementById('no-cookies')) {
             clearChildren(containerCookie);
             cookiesListHtml = document.createElement('ul');
+            cookiesListHtml.appendChild(generateSearchBar());
             containerCookie.appendChild(cookiesListHtml);
         }
 
@@ -548,6 +537,12 @@
     function sendNotification(message) {
         notificationQueue.push(message);
         triggerNotification();
+    }
+
+    function generateSearchBar() {
+        var searchBarContainer = document.importNode(document.getElementById('tmp-search-bar').content, true);
+        searchBarContainer.getElementById('searchField').addEventListener('keyup', e => filterCookies(e.target, e.target.value));
+        return searchBarContainer;
     }
 
     function triggerNotification() {
@@ -619,8 +614,31 @@
     function adjustWidthIfSmaller() {
         let realWidth = document.documentElement.clientWidth;
         if (realWidth < 500) {
+            
             document.body.style.minWidth = '100%';
             document.body.style.width = realWidth + 'px';
         }
+    }
+
+    function filterCookies(target, filterText) {
+        
+        var cookies = cookiesListHtml.querySelectorAll('.cookie');
+        filterText = filterText.toLowerCase();
+
+        if (filterText) {
+            target.classList.add('content');
+        } else {
+            target.classList.remove('content');
+        }
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookieElement = cookies[i];
+            const cookieName = cookieElement.children[0].getElementsByTagName('span')[0].textContent.toLocaleLowerCase();
+            if (!filterText || cookieName.indexOf(filterText) > -1) {
+                cookieElement.classList.remove('hide');
+            } else {
+                cookieElement.classList.add('hide');
+            }
+        };
     }
 }());
