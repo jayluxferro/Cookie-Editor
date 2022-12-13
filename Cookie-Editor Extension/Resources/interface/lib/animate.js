@@ -8,7 +8,7 @@ class Animate
                 callback();
             }
 
-            // Hack to force safari to resize the popup window after the animation is done
+            // Hack to force firefox to resize the popup window after the animation is done
             document.body.style.height = '100%';
             setTimeout(function () {
                 document.body.style.height = '';

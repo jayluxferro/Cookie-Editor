@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-controller="indexController">
 
 <head>
     <meta charset="utf-8">
@@ -10,7 +10,11 @@
 
 <body>
     <div id="pageTitle">
-        <h1 class="container">Cookie Editor</h1>
+        <img src="../../icons/cookie-filled.svg" />
+        <div class="titles">
+            <h1>Cookie Editor</h1>
+            <h2></h2>
+        </div>
 
         <div id="advanced-toggle-all">
             <label>
@@ -19,7 +23,6 @@
             </label>
         </div>
     </div>
-
     <div id="cookie-container"></div>
 
     <div class="panel button-bar active" id="button-bar-default">
@@ -98,23 +101,26 @@
         </div>
     </div>
 
-    <script src="../lib/isPopup.js"></script>
     <script src="../lib/animate.js"></script>
     <script src="../lib/event.js"></script>
     <script src="../lib/browserDetector.js"></script>
     <script src="../lib/cookie.js"></script>
     <script src="../lib/genericCookieHandler.js"></script>
-    <script src="popupCookieHandler.js"></script>
-    <script src="cookie-list.js"></script>
+    <script src="../popup/popupCookieHandler.js"></script>
+    <script src="../popup/cookie-list.js"></script>
 
     <template id="tmp-cookie">
         <li data-name="" class="cookie">
             <div class="header container">
-                <svg class="icon arrow"><use href="../sprites/solid.svg#angle-down"></use></svg>
+                <svg class="icon arrow">
+                    <use href="../sprites/solid.svg#angle-down"></use>
+                </svg>
                 <span class="header-name"></span>
                 <div class="btns">
                     <button class="delete" data-tooltip-left="Delete">
-                        <svg class="icon"><use href="../sprites/solid.svg#trash"></use></svg>
+                        <svg class="icon">
+                            <use href="../sprites/solid.svg#trash"></use>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -122,10 +128,14 @@
                 <div class="wrapper">
                     <div class="action-btns">
                         <button class="delete" data-tooltip="Delete">
-                            <svg class="icon"><use href="../sprites/solid.svg#trash"></use></svg>
+                            <svg class="icon">
+                                <use href="../sprites/solid.svg#trash"></use>
+                            </svg>
                         </button>
                         <button class="save" data-tooltip="Save">
-                            <svg class="icon"><use href="../sprites/solid.svg#save"></use></svg>
+                            <svg class="icon">
+                                <use href="../sprites/solid.svg#save"></use>
+                            </svg>
                         </button>
                     </div>
                     <form data-id="" class="form container">
@@ -136,9 +146,6 @@
                         <div>
                             <label class="label-value">Value</label>
                             <textarea name="value" class="input-value"></textarea>
-                        </div>
-                        <div class="advanced-toggle">
-                            Show Advanced
                         </div>
                         <div class="advanced-form">
                             <div>
@@ -176,6 +183,11 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="advanced-toggle-container">
+                            <div class="advanced-toggle">
+                                Show Advanced
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -209,7 +221,7 @@
             This page does not have any cookies
         </p>
     </template>
-
+    
     <template id="tmp-search-bar">
         <li>
             <div id="searchContainer">
@@ -218,6 +230,7 @@
             </div>
         </li>
     </template>
+    </body>
 </body>
 
 </html>

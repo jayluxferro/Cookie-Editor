@@ -83,6 +83,8 @@
         }
 
         function saveCookie(id, name, value, domain, path, expiration, sameSite, hostOnly, session, secure, httpOnly) {
+            
+
             let cookieContainer = loadedCookies[id];
             let cookie = cookieContainer ? cookieContainer.cookie : null;
             let oldName;
@@ -131,24 +133,24 @@
                             sendNotification(error);
                             return;
                         }
-                        
-                        onCookiesChanged();
-                        
+                        if (browserDetector.isEdge()) {
+                            onCookiesChanged();
+                        }
                         if (cookieContainer) {
                             cookieContainer.showSuccessAnimation();
                         }
                     });
                 });
             } else {
-                
                 // Should probably put in a function to prevent duplication
                 cookieHandler.saveCookie(cookie, getCurrentTabUrl(), function(error, cookie) {
                     if (error) {
                         sendNotification(error);
                         return;
                     }
-                    
-                    onCookiesChanged();
+                    if (browserDetector.isEdge()) {
+                        onCookiesChanged();
+                    }
 
                     if (cookieContainer) {
                         cookieContainer.showSuccessAnimation();
@@ -351,7 +353,20 @@
         showCookiesForTab();
         adjustWidthIfSmaller();
 
-        // containerCookie.style.height = '300px';
+        if (chrome && chrome.runtime && chrome.runtime.getBrowserInfo) {
+            chrome.runtime.getBrowserInfo(function (info) {
+                const mainVersion = info.version.split('.')[0];
+                if (mainVersion < 57) {
+                    containerCookie.style.height = '600px';
+                }
+            });
+        }
+
+        // Bugfix/hotfix for Chrome 84. Let's remove this once Chrome 90 or later is released
+        if (browserDetector.isChrome()) {
+            
+            document.querySelectorAll('svg').forEach(x => {x.innerHTML = x.innerHTML});
+        }
     });
 
     // == End document ready == //
@@ -364,11 +379,19 @@
             return;
         }
         if (showAllAdvanced === undefined) {
-            browserDetector.getApi().storage.local.get('showAllAdvanced').then(function (onGot) {
-                showAllAdvanced = onGot.showAllAdvanced || false;
-                document.querySelector('#advanced-toggle-all input').checked = showAllAdvanced;
-                return showCookiesForTab();
-            });
+            if (browserDetector.isFirefox()) {
+                browserDetector.getApi().storage.local.get('showAllAdvanced').then(function (onGot) {
+                    showAllAdvanced = onGot.showAllAdvanced || false;
+                    document.querySelector('#advanced-toggle-all input').checked = showAllAdvanced;
+                    return showCookiesForTab();
+                });
+            } else {
+                browserDetector.getApi().storage.local.get('showAllAdvanced', function (onGot) {
+                    showAllAdvanced = onGot.showAllAdvanced || false;
+                    document.querySelector('#advanced-toggle-all input').checked = showAllAdvanced;
+                    return showCookiesForTab();
+                });
+            }
             return;
         }
 
@@ -408,6 +431,12 @@
                 }
             } else {
                 showNoCookies();
+            }
+
+            // Bugfix/hotfix for Chrome 84. Let's remove this once Chrome 90 or later is released
+            if (browserDetector.isChrome()) {
+                
+                document.querySelectorAll('svg').forEach(x => {x.innerHTML = x.innerHTML});
             }
         });
     }
@@ -458,7 +487,9 @@
             }
         });
 
-        onCookiesChanged();
+        if (browserDetector.isEdge()) {
+            onCookiesChanged();
+        }
     }
 
     function onCookiesChanged(changeInfo) {
@@ -611,6 +642,11 @@
     }
 
     function adjustWidthIfSmaller() {
+        // Firefox can have the window smaller if it is in the overflow menu
+        if (!browserDetector.isFirefox()) {
+            return;
+        }
+
         let realWidth = document.documentElement.clientWidth;
         if (realWidth < 500) {
             

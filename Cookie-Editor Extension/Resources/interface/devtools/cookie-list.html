@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html ng-controller="indexController">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../popup/style.css" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<div id="pageTitle">
+	<h1 class="container">Cookie Editor</h1>
+
+	<div id="advanced-toggle-all">
+		<label>
+			<input type="checkbox" />
+			Show Advanced
+		</label>
+	</div>
+</div>
+
+<div id="cookie-container"></div>
+
+<div class="panel button-bar active" id="button-bar-default">
+	<div class="panel-section panel-section-footer">
+		<div class="panel-section-footer-button" id="create-cookie">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#plus"></use></svg>
+				<div class="tooltip">Add</div>
+			</div>
+		</div>
+		<div class="panel-section-footer-separator"></div>
+		<div class="panel-section-footer-button danger" id="delete-all-cookies">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#trash"></use></svg>
+				<div class="tooltip">Delete All</div>
+			</div>
+		</div>
+		<div class="panel-section-footer-separator"></div>
+		<div class="panel-section-footer-button" id="import-cookies">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#file-import"></use></svg>
+				<div class="tooltip">Import</div>
+			</div>
+		</div>
+		<div class="panel-section-footer-separator"></div>
+		<div class="panel-section-footer-button" id="export-cookies">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#file-export"></use></svg>
+				<div class="tooltip">Export</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel button-bar" id="button-bar-add">
+	<div class="panel-section panel-section-footer">
+		<div class="panel-section-footer-button" id="return-list-add">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#arrow-left"></use></svg>
+				<div class="tooltip">Cancel</div>
+			</div>
+		</div>
+		<div class="panel-section-footer-separator"></div>
+		<div class="panel-section-footer-button primary" id="save-create-cookie">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#save"></use></svg>
+				<div class="tooltip">Add</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel button-bar" id="button-bar-import">
+	<div class="panel-section panel-section-footer">
+		<div class="panel-section-footer-button" id="return-list-import">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#arrow-left"></use></svg>
+				<div class="tooltip">Cancel</div>
+			</div>
+		</div>
+		<div class="panel-section-footer-separator"></div>
+		<div class="panel-section-footer-button primary" id="save-import-cookie">
+			<div>
+				<svg class="icon"><use href="../sprites/solid.svg#file-import"></use></svg>
+				<div class="tooltip">Import</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="notification-container">
+	<div id="notification">
+		<span></span>
+		<button id="notification-dismiss"><svg class="icon"><use href="../sprites/solid.svg#times"></use></svg></button>
+	</div>
+</div>
+
+<script src="../lib/animate.js"></script>
+<script src="../lib/event.js"></script>
+<script src="../lib/browserDetector.js"></script>
+<script src="../lib/cookie.js"></script>
+<script src="../lib/genericCookieHandler.js"></script>
+<script src="devtoolCookieHandler.js"></script>
+<script src="../popup/cookie-list.js"></script>
+
+<template id="tmp-cookie">
+	<li data-name="" class="cookie">
+		<div class="header container">
+			<svg class="icon arrow">
+				<use href="../sprites/solid.svg#angle-down"></use>
+			</svg>
+			<span class="header-name"></span>
+			<div class="btns">
+				<button class="delete" data-tooltip-left="Delete">
+					<svg class="icon">
+						<use href="../sprites/solid.svg#trash"></use>
+					</svg>
+				</button>
+			</div>
+		</div>
+		<div class="expando">
+			<div class="wrapper">
+				<div class="action-btns">
+					<button class="delete" data-tooltip="Delete">
+						<svg class="icon">
+							<use href="../sprites/solid.svg#trash"></use>
+						</svg>
+					</button>
+					<button class="save" data-tooltip="Save">
+						<svg class="icon">
+							<use href="../sprites/solid.svg#save"></use>
+						</svg>
+					</button>
+				</div>
+				<form data-id="" class="form container">
+					<div>
+						<label class="label-name">Name</label>
+						<input name="name" type="text" class="input-name" />
+					</div>
+					<div>
+						<label class="label-value">Value</label>
+						<textarea name="value" class="input-value"></textarea>
+					</div>
+					<div class="advanced-toggle">
+						Show Advanced
+					</div>
+					<div class="advanced-form">
+						<div>
+							<label class="label-domain">Domain</label>
+							<input name="domain" type="text" class="input-domain" />
+						</div>
+						<div>
+							<label class="label-path">Path</label>
+							<input name="path" type="text" class="input-path" />
+						</div>
+						<div>
+							<label class="label-expiration">Expiration</label>
+							<input name="expiration" type="text" class="input-expiration" />
+						</div>
+						<div>
+							<label class="label-sameSite">Same Site</label>
+							<select name="sameSite" class="input-sameSite">
+								<option value="no_restriction">No Restriction</option>
+								<option value="lax">Lax</option>
+								<option value="strict">Strict</option>
+							</select>
+						</div>
+						<div class="checkbox-list">
+							<label class="label-hostOnly">
+								<input type="checkbox" name="hostOnly" class="input-hostOnly" /> Host Only
+							</label>
+							<label class="label-session">
+								<input type="checkbox" name="session" class="input-session" /> Session
+							</label>
+							<label class="label-secure">
+								<input type="checkbox" name="secure" class="input-secure" /> Secure
+							</label>
+							<label class="label-httpOnly">
+								<input type="checkbox" name="httpOnly" class="input-httpOnly" /> Http Only
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</li>
+</template>
+
+<template id="tmp-import">
+	<form class="form container import">
+		<div>
+			<label for="content-import">Json</label>
+			<textarea class="json" name="content" id="content-import" placeholder="Paste your Json here"></textarea>
+		</div>
+	</form>
+</template>
+
+<template id="tmp-create">
+	<form class="form container create">
+		<div>
+			<label for="name-create">Name</label>
+			<input name="name" type="text" value="" id="name-create" />
+		</div>
+		<div>
+			<label for="value-create">Value</label>
+			<textarea name="value" id="value-create"></textarea>
+		</div>
+	</form>
+</template>
+
+<template id="tmp-empty">
+	<p class="container" id="no-cookies">
+		This page does not have any cookies
+	</p>
+</template>
+
+<template id="tmp-search-bar">
+	<li>
+		<div id="searchContainer">
+			<svg class="icon search"><use href="../sprites/solid.svg#search"></use></svg>
+			<input id="searchField" type="text" placeholder="Search" />
+		</div>
+	</li>
+</template>
+</body>
+
+</html>

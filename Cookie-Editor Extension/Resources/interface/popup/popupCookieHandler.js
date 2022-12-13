@@ -6,15 +6,28 @@ function CookieHandler() {
     const self = this;
     let isInit = false;
     const browserDetector = new BrowserDetector();
-    browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(init);
+
+    if (browserDetector.isFirefox()) {
+        browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(init);
+    } else {
+        browserDetector.getApi().tabs.query({ active: true, currentWindow: true }, init);
+    }
 
     function init(tabInfo) {
         self.currentTabId = tabInfo[0].id;
         self.currentTab = tabInfo[0];
 
-        browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
-        browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
-        browserDetector.getApi().tabs.onActivated.addListener(onTabActivated);
+        if (browserDetector.isFirefox()) {
+            browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
+            browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
+            browserDetector.getApi().tabs.onActivated.addListener(onTabActivated);
+        } else {
+            browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
+            browserDetector.getApi().tabs.onActivated.addListener(onTabActivated);
+            if (!browserDetector.isEdge()) {
+                browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
+            }
+        }
 
         isInit = true;
         self.emit('ready');
@@ -28,12 +41,21 @@ function CookieHandler() {
     }
     function onTabsChanged(tabId, changeInfo, tab) {
         if (tabId === self.currentTabId && (changeInfo.url || changeInfo.status === 'complete')) {
-            browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(updateCurrentTab);
+            
+            if (browserDetector.isFirefox()) {
+                browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(updateCurrentTab);
+            } else {
+                browserDetector.getApi().tabs.query({ active: true, currentWindow: true }, updateCurrentTab);
+            }
         }
     }
 
     function onTabActivated(activeInfo) {
-        browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(updateCurrentTab);
+        if (browserDetector.isFirefox()) {
+            browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(updateCurrentTab);
+        } else {
+            browserDetector.getApi().tabs.query({ active: true, currentWindow: true }, updateCurrentTab);
+        }
     }
 
     function updateCurrentTab(tabInfo) {

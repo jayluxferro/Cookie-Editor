@@ -8,16 +8,22 @@ function GenericCookieHandler() {
     const browserDetector = new BrowserDetector();
 
     this.getAllCookies = function(callback) {
-        browserDetector.getApi().cookies.getAll({
-            url: this.currentTab.url,
-            storeId: this.currentTab.cookieStoreId
-        }).then(callback, function (e) {
-            
-        });
+        if (browserDetector.isFirefox()) {
+            browserDetector.getApi().cookies.getAll({
+                url: this.currentTab.url,
+                storeId: this.currentTab.cookieStoreId
+            }).then(callback, function (e) {
+                
+            });
+        } else {
+            browserDetector.getApi().cookies.getAll({
+                url: this.currentTab.url,
+                storeId: this.currentTab.cookieStoreId
+            }, callback);
+        }
     };
 
     this.saveCookie = function(cookie, url, callback) {
-        
         const newCookie = {
             domain: cookie.domain || '',
             name: cookie.name || '',
@@ -26,12 +32,10 @@ function GenericCookieHandler() {
             secure: cookie.secure || null,
             httpOnly: cookie.httpOnly || null,
             expirationDate: cookie.expirationDate || null,
-            storeId: cookie.storeId || this.currentTab.cookiesStoreId || null,
+            storeId: cookie.storeId || this.currentTab.cookieStoreId || null,
             url: url
         };
 
-        
-        
         if (cookie.hostOnly) {
             newCookie.domain = null;
         }
@@ -40,35 +44,68 @@ function GenericCookieHandler() {
             newCookie.sameSite = cookie.sameSite || undefined;
         }
         
-   
-        try{
-            if (!newCookie.domain.length) {
-                delete newCookie.domain
-            }
-        }catch(e){
-            // ignore
+        if (browserDetector.isFirefox()) {
+            browserDetector.getApi().cookies.set(newCookie).then(cookie => {
+                if (callback) {
+                    callback(null, cookie);
+                }
+            }, error => {
+                
+                if (callback) {
+                    callback(error.message, null);
+                }
+            });
+        } else {
+            browserDetector.getApi().cookies.set(newCookie, (cookieResponse) => {
+                let error = browserDetector.getApi().runtime.lastError;
+                if (!cookieResponse || error) {
+                    
+                    if (callback) {
+                        let errorMessage = (error ? error.message : '') || 'Unknown error';
+                        return callback(errorMessage, cookieResponse);
+                    }
+                    return;
+                }
+
+                if (callback) {
+                    return callback(null, cookieResponse);
+                }
+            });
         }
-        browserDetector.getApi().cookies.set(newCookie).then(cookie => {
-            if (callback) {
-                callback(null, cookie);
-            }
-        }, error => {
-            if (callback) {
-                callback(error.message, null);
-            }
-        });
-        
     };
 
     this.removeCookie = function(name, url, callback) {
-        browserDetector.getApi().cookies.remove({
-            name: name,
-            url: url
-        }).then(callback, function (e) {
-            
-            if (callback) {
-                callback();
-            }
-        });
+        if (browserDetector.isFirefox()) {
+            browserDetector.getApi().cookies.remove({
+                name: name,
+                url: url,
+                storeId: this.currentTab.cookieStoreId
+            }).then(callback, function (e) {
+                
+                if (callback) {
+                    callback();
+                }
+            });
+        } else {
+            browserDetector.getApi().cookies.remove({
+                name: name,
+                url: url,
+                storeId: this.currentTab.cookieStoreId
+            }, (cookieResponse) => {
+                let error = browserDetector.getApi().runtime.lastError;
+                if (!cookieResponse || error) {
+                    
+                    if (callback) {
+                        let errorMessage = (error ? error.message : '') || 'Unknown error';
+                        return callback(errorMessage, cookieResponse);
+                    }
+                    return;
+                }
+
+                if (callback) {
+                    return callback(null, cookieResponse);
+                }
+            });
+        }
     };
 }

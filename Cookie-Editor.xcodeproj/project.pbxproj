@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		696D23BE2945DEBD00CC6886 /* interface in Resources */ = {isa = PBXBuildFile; fileRef = 696D23BC2945DEBD00CC6886 /* interface */; };
+		696D23C22945DEE200CC6886 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 696D23C02945DEE100CC6886 /* icons */; };
 		699454FC258037360028CCDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699454FB258037360028CCDF /* AppDelegate.swift */; };
 		699454FF258037360028CCDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 699454FD258037360028CCDF /* Main.storyboard */; };
 		69945501258037360028CCDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69945500258037360028CCDF /* ViewController.swift */; };
 		69945503258037390028CCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69945502258037390028CCDF /* Assets.xcassets */; };
-		6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 699455092580373A0028CCDF /* Cookie-Editor Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 699455092580373A0028CCDF /* Cookie-Editor Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6994550F2580373A0028CCDF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6994550E2580373A0028CCDF /* Cocoa.framework */; };
 		699455122580373A0028CCDF /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699455112580373A0028CCDF /* SafariWebExtensionHandler.swift */; };
 		69A616792604A24B00444250 /* cookie-editor.js in Resources */ = {isa = PBXBuildFile; fileRef = 69A616752604A24A00444250 /* cookie-editor.js */; };
-		69A6167A2604A24B00444250 /* interface in Resources */ = {isa = PBXBuildFile; fileRef = 69A616762604A24A00444250 /* interface */; };
 		69A6167B2604A24B00444250 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 69A616772604A24B00444250 /* manifest.json */; };
 		69A616822604A50300444250 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A616812604A50300444250 /* icon.png */; };
 /* End PBXBuildFile section */
@@ -31,20 +32,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6994551A2580373A0028CCDF /* Embed App Extensions */ = {
+		6994551A2580373A0028CCDF /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed App Extensions */,
+				6994550A2580373A0028CCDF /* Cookie-Editor Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		696D23BC2945DEBD00CC6886 /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = Resources/interface; sourceTree = "<group>"; };
+		696D23C02945DEE100CC6886 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
 		699454F7258037360028CCDF /* Cookie-Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cookie-Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		699454FA258037360028CCDF /* Cookie_Editor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookie_Editor.entitlements; sourceTree = "<group>"; };
 		699454FB258037360028CCDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		699455132580373A0028CCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		699455142580373A0028CCDF /* Cookie_Editor_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cookie_Editor_Extension.entitlements; sourceTree = "<group>"; };
 		69A616752604A24A00444250 /* cookie-editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "cookie-editor.js"; path = "Resources/cookie-editor.js"; sourceTree = "<group>"; };
-		69A616762604A24A00444250 /* interface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = interface; path = Resources/interface; sourceTree = "<group>"; };
 		69A616772604A24B00444250 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
 		69A616812604A50300444250 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,8 +139,9 @@
 		6994551E2580373B0028CCDF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				696D23C02945DEE100CC6886 /* icons */,
+				696D23BC2945DEBD00CC6886 /* interface */,
 				69A616752604A24A00444250 /* cookie-editor.js */,
-				69A616762604A24A00444250 /* interface */,
 				69A616772604A24B00444250 /* manifest.json */,
 			);
 			name = Resources;
@@ -155,7 +158,7 @@
 				699454F3258037360028CCDF /* Sources */,
 				699454F4258037360028CCDF /* Frameworks */,
 				699454F5258037360028CCDF /* Resources */,
-				6994551A2580373A0028CCDF /* Embed App Extensions */,
+				6994551A2580373A0028CCDF /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -191,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					699454F6258037360028CCDF = {
 						CreatedOnToolsVersion = 12.3;
@@ -234,8 +237,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69A6167A2604A24B00444250 /* interface in Resources */,
 				69A616822604A50300444250 /* icon.png in Resources */,
+				696D23BE2945DEBD00CC6886 /* interface in Resources */,
+				696D23C22945DEE200CC6886 /* icons in Resources */,
 				69A6167B2604A24B00444250 /* manifest.json in Resources */,
 				69A616792604A24B00444250 /* cookie-editor.js in Resources */,
 			);
@@ -317,7 +321,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -378,7 +384,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -392,6 +400,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -404,13 +413,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor Extension/Cookie_Editor_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "Cookie-Editor Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -424,13 +434,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Cookie-Editor Extension/Cookie_Editor_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "Cookie-Editor Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -448,12 +459,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "Cookie-Editor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -470,12 +482,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "Cookie-Editor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.sperixlabs.Cookie-Editor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

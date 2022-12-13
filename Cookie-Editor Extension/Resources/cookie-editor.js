@@ -3,27 +3,36 @@
 
     const connections = {};
     const browserDetector = new BrowserDetector();
-    
+
 	browserDetector.getApi().runtime.onConnect.addListener(onConnect);
 	browserDetector.getApi().runtime.onMessage.addListener(handleMessage);
 	browserDetector.getApi().tabs.onUpdated.addListener(onTabsChanged);
-	browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
-    const popupOptions = {};
-    popupOptions.popup = '/interface/popup/cookie-list.html';
-    browserDetector.getApi().browserAction.setPopup(popupOptions);
+	
+    if (!browserDetector.isEdge()) {
+        browserDetector.getApi().cookies.onChanged.addListener(onCookiesChanged);
+    }
     
+    isFirefoxAndroid(function(response) {
+        const popupOptions = {};
+        if (response) {
+            popupOptions.popup = '/interface/popup-android/cookie-list.html';
+        } else {
+            popupOptions.popup = '/interface/popup/cookie-list.html';
+        }
+		browserDetector.getApi().browserAction.setPopup(popupOptions);
+    });
 
     function handleMessage(request, sender, sendResponse) {
         
         switch (request.type) {
             case 'getTabs':
-                browserDetector.getApi().tabs.query({}).then(tabs => {
+                browserDetector.getApi().tabs.query({}, function (tabs) {
                     sendResponse(tabs);
                 });
                 return true;
 
             case 'getCurrentTab':
-                browserDetector.getApi().tabs.query({ active: true, currentWindow: true }).then(tabInfo => {
+                browserDetector.getApi().tabs.query({ active: true, currentWindow: true }, function (tabInfo) {
                     sendResponse(tabInfo);
                 });
                 return true;
@@ -32,17 +41,32 @@
                 const getAllCookiesParams = {
                     url: request.params.url
                 };
-                
-                browserDetector.getApi().cookies.getAll(getAllCookiesParams).then(sendResponse);
+                if (browserDetector.isFirefox()) {
+                    browserDetector.getApi().cookies.getAll(getAllCookiesParams).then(sendResponse);
+                } else {
+                    browserDetector.getApi().cookies.getAll(getAllCookiesParams, sendResponse);
+                }
                 return true;
 
             case 'saveCookie':
-                browserDetector.getApi().cookies.set(request.params.cookie).then(cookie => {
-                    sendResponse(null, cookie);
-                }, error => {
-                    
-                    sendResponse(error.message, null);
-                });
+                if (browserDetector.isFirefox()) {
+                    browserDetector.getApi().cookies.set(request.params.cookie).then(cookie => {
+                        sendResponse(null, cookie);
+                    }, error => {
+                        
+                        sendResponse(error.message, null);
+                    });
+                } else {
+                    browserDetector.getApi().cookies.set(request.params.cookie, cookie => {
+                        if (cookie) {
+                            sendResponse(null, cookie);
+                        } else {
+                            let error = browserDetector.getApi().runtime.lastError;
+                            
+                            sendResponse(error.message, cookie);
+                        }
+                    });
+                }
                 return true;
 
             case 'removeCookie':
@@ -50,7 +74,11 @@
                     name: request.params.name,
                     url: request.params.url
                 };
-                browserDetector.getApi().cookies.remove(removeParams).then(sendResponse);
+                if (browserDetector.isFirefox()) {
+                    browserDetector.getApi().cookies.remove(removeParams).then(sendResponse);
+                } else {
+                    browserDetector.getApi().cookies.remove(removeParams, sendResponse);
+                }
                 return true;
         }
     }
@@ -111,6 +139,16 @@
 
     function onTabsChanged(tabId, changeInfo, tab) {
         sendMessageToTab(tabId, 'tabsChanged', changeInfo);
+    }
+
+    function isFirefoxAndroid(callback) {
+        if (!browserDetector.isFirefox()) {
+            return callback(false);
+        }
+
+        return browserDetector.getApi().runtime.getPlatformInfo().then((info) => {
+            callback(info.os === 'android');
+        });
     }
 
 }());

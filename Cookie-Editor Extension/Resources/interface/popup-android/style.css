@@ -1,13 +1,18 @@
+html, body {
+    height: 100%;
+    min-height: 600px;
+    min-width: 400px;
+}
+
 body {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     padding: 0;
     margin: 0;
-    min-width: 500px;
-    font-size: 12px;
+    width: 100%;
+    font-size: 1em;
     overflow: hidden;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    color: #000000;
     background-color: #ffffff;
 }
 
@@ -26,55 +31,56 @@ svg.icon {
   pointer-events: none;
 }
 
-
-.header-name {
-  pointer-events: none;
-}
-
-.container {
-    padding: 8px 16px;
-}
-
 #pageTitle {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    flex-shrink: 0;
     overflow: hidden;
+    padding: 0.5em;
+    background-color: #fafafa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
-
-#pageTitle h1 {
-    font-size: 16px;
-    line-height: 16px;
-    margin: 5px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    min-width: 0;
+#pageTitle .titles {
+    display: inline-block;
+    flex: 1;
 }
-
-h2 {
+#pageTitle img {
+    margin-right: 10px;
+    height: 2.259em;
+}
+#pageTitle h1, #pageTitle h2 {
     margin: 0;
     padding: 0;
 }
 
-button {
-    cursor: pointer;
+#pageTitle h1 {
+    font-size: 1.25em;
 }
-button:focus {outline:0;}
+
+#pageTitle h2 {
+    font-size: 1em;
+    color: #1a1a1a;
+    font-weight: normal;
+}
 
 #searchContainer {
-  display: flex;
-  position: relative;
+    display: flex;
+    position: relative;
 }
-
+  
 #cookie-container .search {
     position: absolute;
-    left: 15px;
-    top: 10px;
+    left: 1em;
+    top: 1.05em;
 }
 
 #cookie-container #searchField {
     background-color: transparent;
-    padding: 8px;
-    padding-left: 40px;
+    padding: 1em;
+    padding-left: 2.7em;
     transition: background-color 100ms linear;
+    border: 1px solid rgb(150,150,150);
 }
 
 #cookie-container #searchField:hover, #cookie-container #searchField:focus {
@@ -85,17 +91,27 @@ button:focus {outline:0;}
 }
 
 #cookie-container {
-    min-height: 100px;
-    min-width: 300px;
-    max-height: 400px;
     overflow-y: auto;
     background-color: #eaeaea;
+    flex: 1 1;
 }
 
-#no-cookies {
-    margin-top: 2em;
-    text-align: center;
-    font-size: 1.2em;
+#cookie-container > .container {
+    padding: 15px;
+    height: 100%;
+}
+
+form.import, form.import > div {
+    height: 100%;
+    max-height: 100%;
+}
+form.import > div {
+    display: flex;
+    flex-direction: column;
+}
+#cookie-container form.import textarea {
+    flex: 1 1;
+    max-height: none;
 }
 
 #cookie-container ul {
@@ -105,93 +121,62 @@ button:focus {outline:0;}
     list-style-type: none;
 }
 
-#cookie-container li.hide {
+#cookie-container li .header {
+    padding: 1.25em 1em;
+    font-weight: bold;
+    border: 1px solid #cacaca;
+    background-color: #ffffff;
+    position: relative;
+    -moz-user-select: none;
+    user-select: none;
+}
+#cookie-container li .header .btns {
     display: none;
 }
 
-#cookie-container .header {
-    border: 1px solid #cacaca;
-    position: relative;
-    cursor: pointer;
-    -moz-user-select: none;
-    user-select: none;
-    background-color: #ffffff;
-}
-
-#cookie-container li .header .btns {
-    display: block;
-    opacity: 0;
-    position: absolute;
-    right: 16px;
-    top: 4px;
-    transition: all 100ms ease;
-}
-
-#cookie-container li .header:hover .btns {
-    opacity: 1;
-}
-
-#cookie-container li .header .icon.arrow {
+#cookie-container li .header .icon {
     -moz-transition: transform 150ms ease-in 0s;
     transition: transform 150ms ease-in 0s;
     margin-right: 10px;
 }
 
-#cookie-container li .header.active .icon.arrow {
+#cookie-container li .header.active .icon {
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
 }
 
-#cookie-container .expando {
+#cookie-container li .expando {
     max-height: 0;
     display: flex;
     overflow: hidden;
 }
 
-#cookie-container .expando .wrapper {
+#cookie-container li .expando .wrapper {
     flex: 1;
+    padding: 1.25em 1em;
+    padding-bottom: 0.4em;
     display: flex;
+    flex-direction: column-reverse;
+}
+
+.form.container div:first-child {
+    margin-bottom: 0.75em;
 }
 
 #cookie-container textarea, #cookie-container input[type="text"], #cookie-container select {
     width: 100%;
+    font-size: 1em;
+    font-family: inherit;
+    resize: vertical;
     margin: 0;
-    padding: 4px;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    border: 1px solid rgb(150,150,150);
-}
-
-#cookie-container textarea:hover, #cookie-container input:not([disabled])[type="text"]:hover {
-    border-color: rgb(82, 130, 192);
-    box-shadow: 1px 1px 5px rgba(150, 150, 150, 0.4);
-}
-
-.checkbox-list {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 7px;
-}
-
-.checkbox-list label, .checkbox-list input {
-    cursor: pointer;
-}
-
-.checkbox-list input {
-    vertical-align: middle;
-    position: relative;
-    bottom: 2px;
+    padding: 1em 0.5em;
 }
 
 #cookie-container textarea {
-    height: 60px;
     resize: none;
-}
-
-#cookie-container textarea.json {
-    height: 360px;
-    font-family: Consolas,Monaco,monospace;
-    white-space: pre;
-    overflow:auto;
+    height: 90px;
+    max-height: 90px;
+    min-height: 90px;
 }
 
 label {
@@ -200,84 +185,61 @@ label {
 }
 
 .panel-section-footer-button {
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 0.75em;
+    line-height: 0.75em;
 }
 
 .button-bar {
     display: none;
-    z-index: 5;
     background-color: #f0f0f0;
+    flex: 0 0 auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    z-index: 5;
 }
 
 .button-bar.active {
     display: block;
 }
 
-.expando .container.form {
+.container.form {
     flex: 1;
-    padding-left: 4px;
-}
-.container.form label {
-    font-weight: 500;
 }
 
 .action-btns {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: stretch;
     padding: 4px;
-}
-
-.action-btns .tooltip {
-    display: none;
-}
-
-.btns button.delete {
-    background-color: #fbfbfb;
-    border: 1px solid #b1b1b1;
-    height: 24px;
-    outline: 0 !important;
-    padding: 0 8px 0;
-    transition-duration: 250ms;
-    transition-property: box-shadow, border;
-}
-
-.btns button.delete::-moz-focus-inner {
-    border: 0;
-    outline: 0;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .action-btns button {
     flex: 1 1;
+    text-align: center;
     border: none;
     background-color: transparent;
-    cursor: pointer;
-    padding: 8px;
-    transition: color 75ms;
-    transition-timing-function: ease-in;
+    padding: 18px;
 }
 
-.action-btns button, .btns button {
-    transition: all 100ms ease;
-    fill: #000000;
+.action-btns button:focus {outline:0;}
+
+.action-btns button:active {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.action-btns button:hover {
-    opacity: 0.5;
-}
-button.delete:hover {
-    fill: #CF000F;
-    opacity: 0.8;
-}
-.action-btns button.save:hover {
-    fill: #1E824C;
-    opacity: 0.8;
+.action-btns button:last-child {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Quick workaround the rendering issue for popups */
-body, .expando, #cookie-container {
-	background-image: url("pixel.png");
+.action-btns svg, .action-btns [data-tooltip]::after {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+}
+.action-btns [data-tooltip]::after {
+    margin-left: 10px;
+    content: attr(data-tooltip);
 }
 
 .panel-section-footer {
@@ -286,7 +248,7 @@ body, .expando, #cookie-container {
     color: #1a1a1a;
     display: flex;
     flex-direction: row;
-    height: 41px;
+    height: 65px;
     margin-top: -1px;
     padding: 0;
     -moz-user-select: none;
@@ -295,23 +257,15 @@ body, .expando, #cookie-container {
 }
 .panel-section-footer-button {
     flex: 1 1;
+    font-size: 18px;
+    margin: 0 -1px;
     padding: 12px;
     text-align: center;
-    cursor: pointer;
-    transition: all 150ms ease;
+    overflow: hidden;
 }
-.panel-section-footer-button:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+.panel-section-footer-button:active {
+    background-color: rgba(0, 0, 0, 0.1);
 }
-.panel-section-footer-button.primary:hover {
-    background-color: #1b98f1;
-    color: #fff;
-    fill: #fff;
-}
-.panel-section-footer-button.danger:hover {
-    background-color: #f800002b;
-}
-
 .panel-section-footer-separator {
     background-color: rgba(0, 0, 0, 0.1);
     width: 1px;
@@ -320,35 +274,21 @@ body, .expando, #cookie-container {
 
 .panel-section-footer-button > div {
     text-align: center;
-    transition: transform 100ms ease;
 }
 .panel-section-footer-button .tooltip {
     text-align: center;
-    color: #888;
-    transition: all 200ms ease;
-    opacity: 0;
-}
-.panel-section-footer-button:hover > div {
-    transform: translateY(-6px);
-}
-.panel-section-footer-button:hover .tooltip {
-    color: #444;
-    opacity: 1;
+    color: #666;
+    font-size: 16px;
+    line-height: 30px
 }
 
-.panel-section-footer-button.primary .tooltip {
-    color: #bfbfbf;
-}
-.panel-section-footer-button.primary:hover .tooltip {
-    color: #efefef;
-}
 
 #notification-container {
     display: block;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 50px;
+    bottom: 90px; 
     text-align: center;
     opacity: 1;
     transition: opacity 150ms ease-in 0s;
@@ -362,10 +302,11 @@ body, .expando, #cookie-container {
     padding: 10px 20px;
     padding-right: 25px;
     margin: auto;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.87);
     border-radius: 5px;
     color: #fafafa;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 400;
     pointer-events: auto;
     animation-duration: 0.3s;
     animation-fill-mode: both;
@@ -389,9 +330,8 @@ body, .expando, #cookie-container {
     position: absolute;
     top: 5px;
     right: 2px;
-    background: none;
     border: none;
-    background-color: transparent;
+    background: transparent none;
     cursor: pointer;
     fill: #656565;
 }
@@ -409,7 +349,7 @@ body, .expando, #cookie-container {
 
 @keyframes fadeInUp {
     from {
-        transform: translate3d(0,40px,0);
+        transform: translate3d(0,60px,0);
     }
 
     to {
@@ -424,49 +364,10 @@ body, .expando, #cookie-container {
     }
 
     to {
-        transform: translate3d(0,40px,0);
+        transform: translate3d(0,60px,0);
         opacity: 0;
     }
 }
-
-[data-tooltip], [data-tooltip-left] {
-    position: relative;
-}
-
-[data-tooltip]::after, [data-tooltip-left]::after {
-    position: absolute;
-    top: 49%;
-    padding: 3px 10px;
-    min-width: 40px;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    z-index: 50;
-    visibility: hidden;
-}
-[data-tooltip]::after {
-    content: attr(data-tooltip);
-    left: 100%;
-    margin-left: 10px;
-    transform: translate(-30px, -50%);
-}
-[data-tooltip-left]::after {
-    content: attr(data-tooltip-left);
-    right: 100%;
-    margin-right: 7px;
-    transform: translate(20px, -50%);
-}
-
-[data-tooltip]:hover::after, [data-tooltip-left]:hover::after {
-    opacity: 1;
-    transition: all 0.1s ease 0.5s;
-    visibility: visible;
-    transform: translateY(-50%);
-}
-
 .anim-value-changed, #cookie-container .anim-value-changed {
     animation-name: changed-value;
     animation-duration: 0.5s;
@@ -490,21 +391,28 @@ body, .expando, #cookie-container {
     100% {background-color: transparent; }
 }
 
+#advanced-toggle-all {
+    float: right;
+    display: none;
+}
+
 .advanced-form {
     display: none;
 }
 .advanced-form.show {
     display: block;
 }
-.advanced-toggle {
-    text-align: right;
-    font-size: 10px;
-    text-decoration: underline;
-    cursor: pointer;
-    user-select: none;
+.advanced-toggle-container {
+    text-align: center;
 }
-.advanced-toggle:hover {
-    color: #888;
+
+.advanced-toggle {
+    padding: 10px;
+    margin: 6px;
+    border: 1px solid #888;
+    color: #777;
+    user-select: none;
+    display: inline-block;
 }
 
 #advanced-toggle-all {
@@ -520,4 +428,20 @@ body, .expando, #cookie-container {
     vertical-align: middle;
     position: relative;
     bottom: 2px;
+}
+
+.checkbox-list {
+    margin-top: 7px;
+}
+.checkbox-list label {
+    padding: 15px 0;
+    margin: 10px 0;
+    border: 1px solid #aaa;
+    background-color: #ffffff;
+}
+.checkbox-list input {
+    vertical-align: middle;
+    position: relative;
+    bottom: 2px;
+    margin-left: 15px;
 }

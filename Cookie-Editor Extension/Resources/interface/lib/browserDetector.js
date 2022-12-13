@@ -1,11 +1,44 @@
 function BrowserDetector() {
     'use strict';
-    
-    let namespace = window.browser;
+    let namespace = window.browser || window.chrome;
+    let browserName;
     let doesSupportSameSiteCookie = null;
+
+    if (namespace === window.chrome) {
+        browserName = 'chrome';
+    }
+    else if (namespace === window.browser) {
+        let supportPromises = false;
+        try {
+            supportPromises = namespace.runtime.getPlatformInfo() instanceof Promise;
+        }
+        catch (e) {
+        }
+
+        if (supportPromises) {
+            browserName = 'firefox';
+        }
+        else {
+            browserName = 'edge';
+        }
+    }
+
+    
 
     this.getApi = function () {
         return namespace;
+    };
+
+    this.isFirefox = function () {
+        return browserName === 'firefox';
+    };
+
+    this.isChrome = function () {
+        return browserName === 'chrome';
+    };
+
+    this.isEdge = function () {
+        return browserName === 'edge';
     };
 
     this.supportSameSiteCookie = function () {
@@ -21,12 +54,24 @@ function BrowserDetector() {
         };
 
         try {
-            this.getApi().cookies.set(newCookie).then(cookie => {
-                doesSupportSameSiteCookie = true;
-            }, error => {
-                
-                doesSupportSameSiteCookie = false;
-            });
+            if (this.isFirefox()) {
+                this.getApi().cookies.set(newCookie).then(cookie => {
+                    doesSupportSameSiteCookie = true;
+                }, error => {
+                    
+                    doesSupportSameSiteCookie = false;
+                });
+            } else {
+                this.getApi().cookies.set(newCookie, (cookieResponse) => {
+                    let error = this.getApi().runtime.lastError;
+                    if (!cookieResponse || error) {
+                        
+                        doesSupportSameSiteCookie = false;
+                        return;
+                    }
+                    doesSupportSameSiteCookie = true;
+                });
+            }
         } catch(e) {
             doesSupportSameSiteCookie = false;
         }
