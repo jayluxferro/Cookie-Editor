@@ -2,6 +2,8 @@
 	<h2 align="center">Cookie-Editor Extension for Safari</h2>
 </p>
 
+*NB:* The latest version of the project can be found here: https://github.com/Moustachauve/cookie-editor
+
 ### Development
 1. Clone and build project with Xcode 12 or greater.
 2. Enable "**Develop**" mode in Safari.
